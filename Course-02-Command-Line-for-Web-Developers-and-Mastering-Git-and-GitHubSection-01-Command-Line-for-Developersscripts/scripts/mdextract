@@ -1,0 +1,15 @@
+if [ "$#" -ne 2 ]; then
+    echo "Illegal syntax. Correct syntax: mdextract \"path of archive\" \"destination path\""
+else
+    if [ ! -f $1 ]; then
+        echo "file $1 does not exist"
+        exit
+    fi
+
+    if [ ! -d $2 ]; then
+        echo "directory $2 does not exist"
+        exit
+    fi
+
+    tar -xf "$1" -C "$2"
+fi

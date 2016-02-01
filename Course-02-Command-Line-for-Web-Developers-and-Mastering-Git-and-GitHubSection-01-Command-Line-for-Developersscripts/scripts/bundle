@@ -1,0 +1,14 @@
+if [ "$#" -lt 2 ]; then
+    echo "Illegal syntax. Correct syntax: web-bundler \"bundle.js\" \"destination path\""
+else
+    touch $1
+    cmd2=""
+    c=2
+    output=$1
+    shift $((1))
+    while [ $# -gt 0 ]
+    do
+        find $1 -type f | xargs cat >> $output
+        shift $((1))
+    done
+fi

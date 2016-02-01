@@ -1,0 +1,42 @@
+if [ "$#" -ne 2 ]; then
+    echo "Illegal syntax. Correct syntax: mdtemplate \"destination path\""
+else
+
+    if [ ! -d $1 ]; then
+        echo "directory $1 does not exist"
+        exit
+    fi
+
+    css=$1/css
+    images=$1/images
+    js=$1/js
+    style=$css/style.css
+    main=$js/main.js
+    index=$1/index.html
+    mkdir $css
+    mkdir $images
+    mkdir $js
+    touch $style
+    touch $main
+    touch $index
+
+    echo -e "<!DOCTYPE html>" >> $index
+    echo -e "<html lang=\"en\">" >> $index
+    echo -e "\t<head>" >> $index
+    echo -e "\t\t<meta charset=\"utf-8\">" >> $index
+    echo -e "\t\t<title>$2</title>" >> $index
+    echo -e "\t\t<link rel=\"stylesheet\" href=\"./css/style.css\">" >> $index
+    echo -e "\t\t<script src=\"./js/main.js\"></script>" >> $index
+    echo -e "\t</head>" >> $index
+    echo -e "\t<body>" >> $index
+    echo -e "\t\t<h1>My first app</h1>" >> $index
+    echo -e "\t</body>" >> $index
+    echo -e "</html>" >> $index
+
+    echo -e "body {" >> $style
+    echo -e "\tbackground-color: lightblue;" >> $style
+    echo -e "}" >> $style
+    echo -e "h1 {" >> $style
+    echo -e "\tbackground-color: green;" >> $style
+    echo -e "}" >> $style
+fi
